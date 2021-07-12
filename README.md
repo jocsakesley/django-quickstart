@@ -7,7 +7,7 @@ Simple Django template for Heroku
 Create project:
 
 ```
-django-admin startproject --template https://github.com/henriquebastos/django-quickstart/archive/master.zip --name=Procfile,.env myproject
+django-admin startproject --template https://github.com/jocsakesley/django-quickstart/archive/master.zip --name=Procfile,.env myproject
 ```
 
 Setup:
