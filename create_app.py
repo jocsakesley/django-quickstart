@@ -6,12 +6,12 @@ def models_capitalize(models):
     return models_capitalize
 
 
-def create_app(app_name):
-    if not os.path.isdir(f"./{app_name}"):
-        os.mkdir(f"./{app_name}")
-        os.chdir(f"./{app_name}")
+def create_app(project_name, app_name):
+    if not os.path.isdir(f"./{project_name}/{app_name}"):
+        os.mkdir(f"./{project_name}/{app_name}")
+        os.chdir(f"./{project_name}/{app_name}")
         files = ("__init__.py", "models.py",
-                 "serializers.py", "views.py", "urls.py")
+                 "serializers.py", "views.py")
         for file in files:
             open(file, "w+")
 
@@ -37,15 +37,15 @@ def create_app(app_name):
         views = open("views.py", "a+")
         views.writelines(
             ["from rest_framework import viewsets\n",
-                f"from {app_name}.models import {models_joined}\n",
-                f"from {app_name}.serializers import {models_joined_serializer}Serializer\n",
+                f"from {project_name}.{app_name}.models import {models_joined}\n",
+                f"from {project_name}.{app_name}.serializers import {models_joined_serializer}Serializer\n",
                 "\n",
                 "\n"])
 
         serializers = open("serializers.py", "a+")
         serializers.writelines(
             [f"from rest_framework import serializers\n",
-                f"from {app_name}.models import {models_joined}\n",
+                f"from {project_name}.{app_name}.models import {models_joined}\n",
                 "\n",
                 "\n"
              ])
@@ -76,8 +76,7 @@ def create_app(app_name):
     else:
         print("App já existe")
 
-    project_name = input("Qual o nome do projeto? ")
-    os.chdir(f'../{project_name}')
+    os.chdir(f'..')
 
     urls = open('urls.py', 'r')
     lines = urls.readlines()
@@ -101,5 +100,6 @@ def create_app(app_name):
 
 
 if __name__ == "__main__":
+    project_name = input("Qual o nome do projeto? ")
     app_name = input("Digite o nome do app: ")
-    create_app(app_name)
+    create_app(project_name, app_name)
