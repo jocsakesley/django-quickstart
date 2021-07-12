@@ -18,10 +18,10 @@ from django.urls import path, include
 
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from {{ project_name }}.core.models import HomeView
+
 
 router = routers.DefaultRouter()
-router.register(r"api/v1/home", HomeView)
+
 
 urlpatterns = [
     path('', include(router.urls)),
